@@ -66,6 +66,7 @@ export default class Sidebar extends Component {
             })
           }
           <SidebarItem />
+          <button className="btn btn-bg btn-sign-out" onClick={() => this.props.signOutFn()}>Sign out</button>
         </div>
       )
     } else {

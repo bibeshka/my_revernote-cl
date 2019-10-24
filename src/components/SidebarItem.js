@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { removeHTMLTags} from '../helper';
 
-const firebase = require('firebase');
-
 export default class SidebarItem extends Component {
   
   selectNote = (n, i) => {

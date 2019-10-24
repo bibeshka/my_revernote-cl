@@ -55,11 +55,14 @@ export default class Editor extends Component {
     if(this.props.selectedNote) {
       return (
         <div className="editor-container">
+          <div className="edit-icon">
+            <i className="fas fa-pen"></i>
+          </div>
           <input className="editor-title-input" 
             placeholder="Note title..." 
             value={this.state.title ? this.state.title : ''}
             onChange={(e) => this.updateTitle(e.target.value)} />
-          <ReactQuill className="editor-root" onChange={this.updateBody} value={this.state.text} />
+          <ReactQuill className="editor-root" onChange={this.updateBody} value={this.state.text} modules={Editor.modules} formats={Editor.formats} />
         </div>
       )
     } else {
@@ -67,6 +70,30 @@ export default class Editor extends Component {
     }
   }
 }
+
+Editor.modules = {
+  toolbar: [
+    [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+    [{size: []}],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [{'list': 'ordered'}, {'list': 'bullet'}, 
+     {'indent': '-1'}, {'indent': '+1'}],
+    ['link', 'image', 'video'],
+    ['clean']
+  ],
+  clipboard: {
+    // toggle to add extra line breaks when pasting HTML:
+    matchVisual: false,
+  }
+}
+
+
+Editor.formats = [
+  'header', 'font', 'size',
+  'bold', 'italic', 'underline', 'strike', 'blockquote',
+  'list', 'bullet', 'indent',
+  'link', 'image', 'video'
+]
 
 // Editor.modules = {
 //   toolbar: [

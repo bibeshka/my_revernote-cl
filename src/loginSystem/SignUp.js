@@ -90,7 +90,7 @@ export default class SignUp extends Component {
             className="input" 
             placeholder="Confirm Your Pass" type="password"
             onChange={(e) => this.userTyping('passwordConfirmation', e)} />
-          <button className="btn btn-bg" type="submit">Confirm</button>
+          <button className="btn btn-bg btn-login-submit" type="submit">Confirm</button>
         </form>
 
         {/* Signup Errors  */}

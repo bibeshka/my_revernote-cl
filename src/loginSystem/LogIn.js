@@ -58,7 +58,7 @@ export default class LogIn extends Component {
             className="input" 
             placeholder="Enter Your Pass" type="password"
             onChange={(e) => this.userTyping('password', e)} />
-          <button className="btn btn-bg" type="submit">Confirm</button>
+          <button className="btn btn-bg btn-login-submit" type="submit">Confirm</button>
         </form>
 
         <p>Dont't have an account ?</p>

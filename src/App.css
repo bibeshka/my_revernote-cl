@@ -54,17 +54,50 @@ body {
   margin-top: 1rem;
 }
 
+.login-from-container input {
+  margin-bottom: 1rem;
+}
+
 /* Dashboard Container */
 
 .dashboard-main-container {
   display: flex;
+  margin: 0;
+  padding: 0;
 }
 
 /* Sidebar Container */
 .sidebar-container {
-  max-width: 30%;
+  width: 20%;
   height: 100vh;
   box-sizing: border-box;
+  position: relative;
+  overflow-y: scroll;
+}
+
+.sidebar-container .btn-sign-out {
+  position: absolute;
+  bottom: 0;
+}
+
+
+/* Sidebar item */
+
+.sidebar-item-container {
+  border: 1px solid var(--main-gray);
+  padding-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.sidebar-item-container .delete-icon {
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+  cursor: pointer;
+  color: var(--primary-color);
 }
 
 /* Editor Container */
@@ -72,13 +105,14 @@ body {
   box-sizing: border-box;
   height: 100vh;
   width: 80%;
+  position: relative;
 }
 
 .editor-title-input {
   width: 100%; 
   background: var(--primary-color);
   color: white;
-  padding: 0.4rem 1.3rem;
+  padding: 0.4rem 2.3rem;
   font-size: 2rem;
   border: none;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
@@ -92,6 +126,14 @@ body {
 .editor-container .editor-root {
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
+}
+
+.editor-container .edit-icon {
+  position: absolute;
+  color: #fff;
+  top: 1rem;
+  left: 0.7rem;
 }
 
 /* Other*/
@@ -128,13 +170,19 @@ body {
   border: none;
   cursor: pointer;
   /* margin-right: 0.5rem; */
-  outline: none;
+  /* outline: none; */
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
   border-radius: 2px;
 }
 
 .btn-bg {
   min-width: 20rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-login-submit {
+  width: 20rem;
 }
 
 /* inputs */

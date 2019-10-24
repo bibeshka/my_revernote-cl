@@ -18,18 +18,28 @@ export default class Dashboard extends Component {
 
   //T0do get item for email
   componentDidMount = () => {
-    firebase
-      .firestore()
-      .collection('notes')
-      .onSnapshot(serverUpdate => {
-        const notes = serverUpdate.docs.map(_doc => {
-          const data = _doc.data();
-          data['id'] = _doc.id
-          return data;
+    firebase.auth().onAuthStateChanged(_usr => {
+      if(!_usr)
+        this.props.history.push('/login');
+      else {
+      firebase
+        .firestore()
+        .collection('notes')
+        .where('users', 'array-contains', _usr.email)
+        .onSnapshot(serverUpdate => {
+          // const notes = serverUpdate.docs.map(_doc => _doc.data());
+          const notes = serverUpdate.docs.map(_doc => {
+            const data = _doc.data();
+            data['id'] = _doc.id
+            return data
+          });
+            this.setState({ notes: notes , email: _usr.email})
+          console.log(notes);
+          console.log(this.state.email);
+          
         });
-        console.log(notes);
-        this.setState({notes: notes})
-      });
+      }
+    })
   }
 
   selectNote = (note, index) => this.setState({ selectedNoteIndex: index, selectedNote: note }); 
@@ -59,7 +69,8 @@ export default class Dashboard extends Component {
       .add({
         title: note.title,
         body: note.body,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        users:[this.state.email]
       });
     const newID = newFromDB.id;
     await this.setState({ note: [...this.state.notes, note] });
@@ -86,6 +97,11 @@ export default class Dashboard extends Component {
       .delete();
   }
 
+  signOutFn = () => {
+    firebase.auth().signOut();
+  }
+
+
   render() {
     return (
       <div className="dashboard-main-container">
@@ -94,7 +110,8 @@ export default class Dashboard extends Component {
           notes={this.state.notes} 
           deleteNote={this.deleteNote} 
           selectNote={this.selectNote} 
-          newNote={this.newNote} />
+          newNote={this.newNote}
+          signOutFn={this.signOutFn} />
         {
           this.state.selectedNote ? 
           <Editor 
