@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
-const firebase = require('firebase  ');
+const firebase = require('firebase');
 
 export default class LogIn extends Component {
 
